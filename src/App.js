@@ -1,25 +1,26 @@
 import  React from 'react';
-import Header from './components/header_component/Header';
-import Footer from './components/footer_component/Footer';
-import Hero from './components/hero_component/Hero';
-import Cards from './components/card_component/Cards';
-import Chatbott from './components/chatbot_component/Chatbott';
-import Testimonials from './components/testimonials_component/Testimonials';
-import SignUp from './components/SigninAndSignUpComponent/SignUp/SignUp';
+import Home from '../src/Pages/Home';
+import DirectorMessage from '../src/Pages/DirectorMessage';
+import ContactUs from '../src/Pages/ContactUs';
+import About from '../src/Pages/About';
+import SignInUp from '../src/Pages/SignInUp';
 //import './App.css';
+import {BrowserRouter as Router,Switch, Route} from 'react-router-dom';
 
 const App = () => {
   return (
     <div className="App">
-        <Header />
-        <main>
-        <Hero />
-        <SignUp />
-        <Chatbott />
-        <Testimonials/>
-        <Cards />
-        </main> 
-        <Footer />
+    <Router>
+        <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/director" component ={DirectorMessage} />
+            <Route path="/contact" component ={ContactUs} />
+            <Route path="/about" component ={About} />
+            <Route path="/signin" component={SignInUp} />
+            
+        </Switch>
+        
+    </Router>  
     </div>
   );
 }

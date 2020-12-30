@@ -9,3 +9,6 @@
   background: none;
   color: currentColor;
 }
+.MuiDialogActions-root {
+  padding: 16px !important;
+}

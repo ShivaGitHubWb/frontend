@@ -35,6 +35,12 @@ const useStyles = makeStyles((theme) => ({
         top:theme.spacing(18),
 
     },
+    dispDialogTitle :{
+      position:"relative",
+      left:"320px",
+      bottom:"10px",
+      minWidth:"40px",
+    },
   }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -91,9 +97,12 @@ const SignUp = () => {
         onClose={handleClose}
         aria-labelledby="alert-dialog-slide-title"
         aria-describedby="alert-dialog-slide-description"
-        
+        maxWidth="sm"
         >
-                <DialogTitle id="alert-dialog-slide-title">{"Not Signed Up?"}</DialogTitle>
+                <DialogTitle id="alert-dialog-slide-title">{"Not Signed Up?"}
+                  <Button className={classes.dispDialogTitle} color="secondary" variant="contained" onClick={handleClose}>X</Button>
+                
+                </DialogTitle>
                     <DialogContent dividers>
                     <form className={classes.root} noValidate autoComplete="off">
                         <TextField id="standard-basic" label="Name" />
@@ -130,13 +139,13 @@ const SignUp = () => {
                     </form>
                     </DialogContent>
                     <DialogActions>
-          <Button onClick={handleClick} color="primary" variant="outlined">
+          <Button onClick={handleClick} color="primary" variant="contained">
             Sign-Up
           </Button>
           <Button 
           onClick={handleClose} 
-          color="primary" 
-          variant="outlined">
+          color="secondary" 
+          variant="contained">
             Cancel
           </Button>
         </DialogActions>    

@@ -9,10 +9,12 @@ import NestedMenuItem from "material-ui-nested-menu-item";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar'
 import Chip from '@material-ui/core/Chip';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import PersonIcon from '@material-ui/icons/Person';
 import {IconButton, Drawer} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
+import DirectorMessage from '../../Pages/DirectorMessage';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -20,6 +22,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import { withRouter , Route , Switch } from 'react-router-dom';
 
 import './Header.css';
 
@@ -108,7 +111,13 @@ const StyledBreadcrumb = withStyles((theme) => ({
 }))(Chip);
 
 
-const Header = () => {
+const Header = props => {
+   const { history,location } = props;
+   const { pathname } = location;
+   //console.log(pathname);
+
+   const pathnames = pathname.split("/").filter(x => x);
+   console.log(pathnames);
   const [menuPosition, setMenuPosition] = useState(null);
   const [menuPositionnews, setMenuPositionnews] = useState(null);
   const [menuPositionform, setMenuPositionform] = useState(null);
@@ -324,6 +333,16 @@ const Header = () => {
     );
   };
 
+  const Routes = () => {
+
+      
+    // <Switch>
+        {/* <Route exact path = '/' component={Header}></Route> */}
+        <Route path="/director" component={DirectorMessage} />
+    // </Switch>
+
+
+  }
   const getMenuBottom = () => {
     return (
       <Toolbar className={classes.toolbar} > 
@@ -331,8 +350,8 @@ const Header = () => {
             <img style={{width:'60%'}} src={`${com_logo}logo.png`}/>
           </Typography>
           <Breadcrumbs className={classes.breadCrumbs} aria-label="breadcrumb" separator="|" style={{padding:"23px 0px 10px 23px"}}>
-              <StyledBreadcrumb className="menuList" component="a" href="#" label="Director Message"  style={{textDecoration:"none"}} />
-              <StyledBreadcrumb className="menuList" component="a" href="#" label="School Partner's" style={{textDecoration:"none"}}/>
+              <StyledBreadcrumb className="menuList" component="a" href="/director" label="Director Message"  style={{textDecoration:"none"}} />
+              <StyledBreadcrumb className="menuList" component="a" href="/spartners" label="School Partner's" style={{textDecoration:"none"}}/>
               <StyledBreadcrumb className="menuList" component="a" href="#" label="Domains" onClick={handleRightClick} style={{textDecoration:"none"}}/>  
               <StyledBreadcrumb className="menuList" component="a" href="#" label="Course Details"  style={{textDecoration:"none"}} />
               <StyledBreadcrumb className="menuList" component="a" href="#" label="Student's Corner" onClick={opennextMenu} style={{textDecoration:"none"}}/>  
@@ -437,7 +456,9 @@ const Header = () => {
               <StyledBreadcrumb className="menuList" component="a" href="#" label="Our Result" onClick={opennextMenutesti} style={{textDecoration:"none"}}/>  
               <StyledBreadcrumb className="menuList" component="a" href="#" label="Career"  style={{textDecoration:"none"}} />
           </Breadcrumbs>
-          <Button className={classes.button}endIcon={<PersonIcon />}>Sign In</Button>
+          <Link to="/signin">
+          <Button className={classes.button}>Sign In</Button>
+          </Link>
       </Toolbar>
     );
   };
@@ -452,4 +473,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default withRouter(Header);

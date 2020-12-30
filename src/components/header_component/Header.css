@@ -36,6 +36,8 @@ div[role*="presentation"] li[role*="menuitem"]:hover {
   margin-left: 4px !important;
   margin-right: 4px !important;
 }
-
+.MuiLink-Hover {
+  color: "blue";
+}
 @media (min-width: 1024px) and (max-width: 1365px) {
 }

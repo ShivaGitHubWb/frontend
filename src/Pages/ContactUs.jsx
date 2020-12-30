@@ -3,7 +3,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 
 const ContactUs = () => {
     return (
-    <link>Contact Us</link>
+    <h1>Contact Us</h1>
     )
 }
 
